@@ -1,0 +1,32 @@
+﻿@model List<MVC_Task.Models.Documents>
+
+@{
+    ViewData["Title"] = "Uploaded Documents";
+}
+
+<h3 class="text-center mt-3">All Uploaded Documents</h3>
+
+<table class="table table-bordered table-striped w-75 mx-auto mt-4">
+    <thead class="table-dark">
+        <tr>
+            <th>Document Name</th>
+            <th>Employee Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in Model)
+        {
+            <tr>
+                <td>@doc.FileName</td>
+                <td>@doc.Emp?.ename</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="@doc.FilePath" target="_blank">View</a>
+                    <a class="btn btn-sm btn-success" asp-action="Download" asp-route-id="@doc.DocId">Download</a>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@doc.DocId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@doc.DocId" onclick="return confirm('Are you sure you want to delete this document?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

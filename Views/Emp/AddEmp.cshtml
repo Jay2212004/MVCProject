@@ -1,0 +1,44 @@
+﻿@model Emp
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<h2 class="text-center mt-4">Add Employee</h2>
+
+<form method="post" class="container mt-4" style="max-width: 600px;">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="ename" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" asp-for="email" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Salary</label>
+        <input type="number" class="form-control" asp-for="esalary" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="password" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Role</label>
+        <select asp-for="RoleId" asp-items="@ViewBag.roles" class="form-select"></select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select asp-for="DeptId" asp-items="@ViewBag.departments" class="form-select"></select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Manager</label>
+        <select asp-for="Mid" asp-items="@ViewBag.managers" class="form-select"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Save</button>
+</form>

@@ -1,0 +1,25 @@
+﻿@model MVC_Task.Models.Documents
+@{
+    ViewData["Title"] = "Upload Document";
+}
+<form asp-action="Upload" enctype="multipart/form-data" method="post" class="form-control" style="max-width: 600px;">
+    <div class="mb-3">
+        <label class="form-label">Emp Name</label>
+        <select asp-for="EmpId" asp-items="ViewBag.emps" class="form-select"></select>
+        <span asp-validation-for="EmpId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Choose File</label>
+        <input asp-for="FileName" type="file" class="form-control" name="file" required />
+        <span asp-validation-for="FileName" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Upload</button>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>;
+    }
+}

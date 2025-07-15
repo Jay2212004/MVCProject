@@ -1,0 +1,32 @@
+﻿@model List<Manager>
+
+@{
+    ViewData["Title"] = "Manager List";
+}
+
+<a class="btn btn-info mb-3" asp-action="AddManager">Add Manager</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Manager ID</th>
+            <th scope="col">Manager Name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.Mid</td>
+                <td>@m.Mname</td>
+                <td>@m.Department?.DeptName</td>
+                <td>
+                    <a class="btn btn-sm btn-success" asp-action="EditManager" asp-route-id="@m.Mid">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="DeleteManager" asp-route-id="@m.Mid" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

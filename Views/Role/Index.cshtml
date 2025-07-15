@@ -1,0 +1,32 @@
+﻿@model List<Role>
+
+@{
+    ViewData["Title"] = "Role List";
+}
+
+<h2 class="text-center mt-3">Role List</h2>
+
+<a class="btn btn-info mb-3" asp-action="AddRole">Add New Role</a>
+
+<table class="table table-bordered w-75 mx-auto">
+    <thead>
+        <tr>
+            <th>Role ID</th>
+            <th>Role Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.RoleId</td>
+                <td>@role.RoleName</td>
+                <td>
+                    <a class="btn btn-sm btn-success" asp-action="EditRole" asp-route-id="@role.RoleId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="DeleteRole" asp-route-id="@role.RoleId" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

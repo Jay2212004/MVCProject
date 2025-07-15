@@ -1,0 +1,16 @@
+﻿@model Role
+
+@{
+    ViewData["Title"] = "Add Role";
+}
+
+<h2 class="text-center mt-4">Add Role</h2>
+
+<form method="post" class="container mt-4" style="max-width: 600px;">
+    <div class="mb-3">
+        <label class="form-label">Role Name</label>
+        <input type="text" class="form-control" asp-for="RoleName" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Save</button>
+</form>

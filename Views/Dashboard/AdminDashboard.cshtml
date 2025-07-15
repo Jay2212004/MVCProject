@@ -1,0 +1,137 @@
+﻿@model Combine
+
+<div class="container-fluid bg-light min-vh-100">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 bg-light border-end shadow-sm p-3 collapse d-md-block" id="sidebarMenu">
+            <h5 class="text-center mb-4 text-dark fw-semibold">Admin Dashboard</h5>
+            <nav class="nav flex-column gap-2">
+                <a class="nav-link text-dark" href="/Emp/AddEmp">➕ Add Employee</a>
+                <a class="nav-link text-dark" href="/Emp/Index">👨‍💼 Employee List</a>
+                <a class="nav-link text-dark" href="/Manager/AddManager">➕ Add Manager</a>
+                <a class="nav-link text-dark" href="/Manager/Index">👔 Manager List</a>
+                <a class="nav-link text-dark" href="/Department/Add">➕ Add Department</a>
+                <a class="nav-link text-dark" href="/Department/Index">🏢 Department List</a>
+                <a class="nav-link text-dark" href="/Role/AddRole">➕ Add Role</a>
+                <a class="nav-link text-dark" href="/Role/Index">🎯 Role List</a>
+                <a class="nav-link text-dark" href="/Documents/Upload">📁 Add Document</a>
+                <a class="nav-link text-dark" href="/Documents/Upload_List">📂 Document List</a>
+            </nav>
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="col-md-9 col-lg-10 bg-white shadow-sm">
+            <div class="d-flex justify-content-between align-items-center mt-3 px-3">
+                <h3 class="text-primary">Welcome Admin</h3>
+                <div class="text-end ms-auto">
+                    <a href="/Account/Logout" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+
+            <div class="container-fluid mt-4">
+                <!-- Employees -->
+                <h4 class="mb-3 text-primary border-bottom pb-2">👨‍💼 Employees</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-primary text-white">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Salary</th>
+                                <th>Role</th>
+                                <th>Manager</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in Model.emps)
+                            {
+                                <tr class="@(d.email == (string)ViewBag.LoggedInEmail ? "table-warning" : "")">
+                                    <td>@d.eid</td>
+                                    <td>
+                                        @d.ename
+                                        @if (d.email == (string)ViewBag.LoggedInEmail)
+                                        {
+                                            <span class="text-success fw-bold">(you)</span>
+                                        }
+                                    </td>
+                                    <td>@d.email</td>
+                                    <td>@d.esalary</td>
+                                    <td>@d.Role.RoleName</td>
+                                    <td>@d.manager?.Mname</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Managers -->
+                <h4 class="mt-5 mb-3 text-primary border-bottom pb-2">👔 Managers</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th>Manager ID</th>
+                                <th>Manager Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var m in Model.manager)
+                            {
+                                <tr>
+                                    <td>@m.Mid</td>
+                                    <td>@m.Mname</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Roles -->
+                <h4 class="mt-5 mb-3 text-primary border-bottom pb-2">🎯 Roles</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-warning">
+                            <tr>
+                                <th>Role ID</th>
+                                <th>Role Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var role in Model.role)
+                            {
+                                <tr>
+                                    <td>@role.RoleId</td>
+                                    <td>@role.RoleName</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Departments -->
+                <h4 class="mt-5 mb-3 text-primary border-bottom pb-2">🏢 Departments</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-success text-white">
+                            <tr>
+                                <th>Department ID</th>
+                                <th>Department Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var dept in Model.dept)
+                            {
+                                <tr>
+                                    <td>@dept.DeptId</td>
+                                    <td>@dept.DeptName</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

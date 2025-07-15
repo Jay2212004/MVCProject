@@ -1,0 +1,33 @@
+﻿
+@model List<Department>
+
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<h2 class="text-center mt-4">Department List</h2>
+
+<a class="btn btn-info mb-3" asp-action="Add">Add Department</a>
+
+<table class="table table-bordered table-striped w-75 mx-auto">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Department ID</th>
+            <th scope="col">Department Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dept in Model)
+        {
+            <tr>
+                <td>@dept.DeptId</td>
+                <td>@dept.DeptName</td>
+                <td>
+                    <a class="btn btn-sm btn-success" asp-action="Edit" asp-route-id="@dept.DeptId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@dept.DeptId" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
